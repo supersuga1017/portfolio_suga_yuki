@@ -1,0 +1,260 @@
+/* app----------------- */
+.suga{
+    color: red;
+}
+
+input[type="checkbox"] {
+    border: 1px solid #000;
+    width: 10px;
+    height: 10px;
+    cursor: pointer;
+}
+
+input[type="radio"] {
+    border: 2px solid #000;
+    border-radius: 50%;
+    cursor: pointer;
+    width: 15px;
+    height: 15px;
+}
+
+input[type="radio"]:checked {
+    background-color: black; /* チェック時の背景色 */
+}
+
+input[type="checkbox"]:checked {
+    background-color: black; /* チェック時の背景色 */
+}
+
+  
+body{
+    font-size: 20px;
+}
+
+.alert-message{
+    background-color: gray;
+    color: white;
+    padding: 20px;
+}
+
+.complete-message{
+    background-color: cornsilk;
+    padding: 20px;
+}
+
+
+/* ーーーーーーーーーーーー */
+.system-title{
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    background-color: blue;
+    text-align: center;
+    padding: 10px 0;
+    margin-bottom: 50px;
+}
+
+.system__customer-name{
+    margin-bottom: 20px;
+}
+
+.system-back{
+    width: 100%;
+    margin: 0 auto;
+    max-width: 1200px;  
+    text-align: right;
+}
+
+.system__containar{
+    width: 100%;
+    margin: 0 auto;
+    max-width: 1200px; 
+    padding: 0 20px;
+}
+
+.back-button{
+    background-color: ghostwhite;
+    display: inline-block;
+    padding: 15px;
+}
+
+.system__menu{
+    margin-bottom: 20px;
+}
+
+.system__table{
+    margin-bottom: 20px;
+}
+
+.system__alert-message{
+    margin-bottom: 25px;
+}
+
+.system__complete-message{
+    margin-bottom: 25px;
+}
+
+
+/* --------------------- */
+
+/* main----------------- */
+
+.main__buttons{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: 0 auto;
+    max-width: 1200px;
+    
+}
+
+.main__button{
+    display: block;
+    background-color: aquamarine;
+    margin-right: 10px;
+    margin-bottom: 20px;
+}
+
+
+.main__button a{
+    width: 100%;
+    height: 100%;
+    display: block  ;
+    padding: 15px 25px;
+}
+/* --------------------- */
+
+
+/* labels.blade----------------- */
+.label__forms{
+    margin-bottom: 50px;
+}
+
+.label__row{
+    margin-bottom: 20px;
+}
+
+.label__form{
+    border: solid 1px black ;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.label__submit{
+    background-color: aliceblue;
+    padding: 10px;
+}
+
+/* --------------------- */
+
+
+/* non_delivery.blade----------------- */
+.non_delivery_forms{
+    margin-bottom: 30px;
+}
+
+.non_delivery__label-information{
+    margin-bottom: 30px;
+}
+/* --------------------- */
+
+
+/* non_delivery_data_creation.blade----------------- */
+/* --------------------- */
+
+
+/* picking_list_output.blade----------------- */
+
+.table{
+    border: 1px solid black;
+    width: 100%;
+    text-align: center;
+}
+
+.table-header tr th{
+    background-color: aliceblue;
+    padding: 10px;
+    text-align: center;
+
+}
+
+.table-row td{
+    padding: 10px;
+
+}
+
+/* .table-body{
+    height: 400px;
+    overflow: hidden;
+} */
+
+.picking__syogo-menu{
+    border: #000 solid 1px;
+    padding: 20px;
+}
+/* --------------------- */
+
+
+/* ーーーーーーーーモーダルウインドウ＾＾＾＾＾＾ */
+/*モーダルを開くボタン*/
+.modal-open{
+	
+}
+/*モーダル本体の指定 + モーダル外側の背景の指定*/
+.modal-container{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	background: rgba(0,0,0,50%);
+	padding: 40px 20px;
+	overflow: auto;
+	opacity: 0;
+	visibility: hidden;
+	transition: .3s;
+    box-sizing: border-box;
+}
+/*モーダル本体の擬似要素の指定*/
+.modal-container:before{
+	content: "";
+	display: inline-block;
+	vertical-align: middle;
+	height: 100%;
+}
+/*モーダル本体に「active」クラス付与した時のスタイル*/
+.modal-container.active{
+	opacity: 1;
+	visibility: visible;
+}
+/*モーダル枠の指定*/
+.modal-body{
+	position: relative;
+	display: inline-block;
+	vertical-align: middle;
+	max-width: 1000px;
+	width: 100%;
+}
+/*モーダルを閉じるボタンの指定*/
+.modal-close{
+	position: absolute;
+	display: flex;
+    align-items: center;
+    justify-content: center;
+	top: -40px;
+	right: -40px;
+	width: 40px;
+	height: 40px;
+	font-size: 40px;
+	color: #fff;
+	cursor: pointer;
+}
+/*モーダル内のコンテンツの指定*/
+.modal-content{
+	background: #fff;
+	text-align: left;
+	padding: 50px 30px;
+}
+
