@@ -24,6 +24,9 @@ return new class extends Migration
 
             $table->unsignedBigInteger('number');
 
+            // データ生成フラグ
+            $table->boolean('creation_flag')->default(false);
+
 
             $table->timestamps();
         });

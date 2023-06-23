@@ -5,11 +5,6 @@
 
     <!-- Bootstrapの定形コード… -->
     <div class="card-body">
-        
-
-        
-
-        
         <!-- バリデーションエラーの表示に使用-->
         @include('common.errors')
         <!-- バリデーションエラーの表示に使用-->
@@ -32,7 +27,7 @@
             </div>
 
             <div class="main__button">
-                <a href="{{url('/non_delivery_data_creation')}}">状態検索（未実装）</a>
+                <a href="{{url('/status_search')}}">状態検索（未実装）</a>
             </div>
 
             <div class="main__button">
@@ -45,6 +40,14 @@
 
             
 
+        </div>
+
+
+        <div class="main__manual">
+           
+           <div class="main__manual-button">
+                <a href="">業務マニュアルはこちら</a>
+            </div>
         </div>
 
     </div>

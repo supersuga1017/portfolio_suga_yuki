@@ -25,14 +25,11 @@ class CommonServiceProvider extends ServiceProvider
     public function boot(): void
     {
         
-
-        // $customer_id = 6;
-        // //対応するIDの得意先名を返す
+        $customer_id = 4;
+        //対応するIDの得意先名を返す
         // $customer = Customer::where('id',$customer_id)->value('name');
-        // // 全てのViewから $customer の値を取得できる
+        // 全てのViewから $customer の値を取得できる
         // View::share('customer', $customer);
         View::share('customer', "青山銀行");
-
-
     }
 }

@@ -10,6 +10,7 @@ use App\Models\NonDelivery;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\LabelsController;
+use App\Http\Controllers\StatusSearchController;
 use App\Http\Controllers\NondeliveryController;
 use Illuminate\Http\Request;
 
@@ -34,6 +35,8 @@ Route::get('/', function () {
     return view('main');
 });
 
+
+
 Route::get('/waste_management', function () {
     return view('waste_management');
 });
@@ -43,6 +46,7 @@ Route::get('/syougou_creation', function () {
 });
 
 Route::get('/non_delivery_data_creation', [NondeliveryController::class, 'index_creation'])->name('non_delivery_data_creation.index_creation');
+Route::get('/status_search', [StatusSearchController::class, 'index'])->name('status_search.index');
 
 
 Route::get('/picking', function () {

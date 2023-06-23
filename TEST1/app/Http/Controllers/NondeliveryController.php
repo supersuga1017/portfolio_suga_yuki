@@ -25,8 +25,9 @@ class NondeliveryController extends Controller
         $today = date('Y-m-d');
         // $this->middleware('auth');
 
-        $this->non_delivery_controller  = NonDelivery::orderBy('gyoumu_cd','asc')
-        ->join('gyoumu','gyoumu.id','=','non_delivery.gyoumu_cd')
+        $this->non_delivery_controller  = NonDelivery::orderBy('date','asc')
+        ->where('creation_flag', '=', 0)
+        ->join('gyoumu', 'non_delivery.gyoumu_cd', '=', 'gyoumu.id')
         ->whereDate('date', $today)
         ->get();
 
@@ -64,6 +65,7 @@ class NondeliveryController extends Controller
         //当日のラベル印刷枚数を表示
         $non_delivery_sum = NonDelivery::select(DB::raw('DATE(date) AS date'), DB::raw('SUM(number) AS count'))
                 ->groupBy(DB::raw('DATE(date)'))
+                ->where('creation_flag', '=', 0)
                 ->whereDate('date', $today)
                 ->get();
 
@@ -169,8 +171,10 @@ class NondeliveryController extends Controller
 
             // モデルを使って最後のレコードを取得(最新の不着登録CDの値を得る)
             $last_non_delivery_Record = $non_delivery::latest('id')->first();//封筒モデルの最後の行を取得
-            $last_non_delivery_Record_id  = $last_non_delivery_Record;
+            $last_non_delivery_Record_id  = $last_non_delivery_Record->id;
 
+
+            // dd($last_non_delivery_Record_id);
             // 3:不着明細テーブルの登録
             $non_delivery_detail = new NonDeliveryDetail;
             $non_delivery_detail->date = $request->non_delivery_date;
@@ -216,10 +220,32 @@ class NondeliveryController extends Controller
     // 不着データ作成ボタンが押されたときにフラグを更新
     public function update(Request $request)
     {
-        //
-        dd($this->non_delivery_controller);
+        $today = date('Y-m-d');
 
-        // 不着明細テーブル上に紐づく封筒CDの状態を更新する
+        //1:不着登録テーブルのIDを取得  (例：2,3,4,5)
+        $today_non_delivery = NonDelivery::orderBy('date','asc')
+        ->select('id','creation_flag')
+        ->whereDate('date', $today)->get();;
+
+        $count = $today_non_delivery->count();//モデルのデータ数を取得
+
+        // 2:不着登録テーブルIDの不着明細テーブル上に紐づく封筒CDの状態を更新する  
+        // 不着登録の１くぎり回数だけ繰り返し(例：2,3,4,5)だと4回繰り返し
+        for ($i = 0; $i < $count; $i++) {
+            // 2-1:不着明細テーブル上のstatus_cdのステータスを6→3に変更する
+            $creation_list = NonDeliveryDetail::where('non_delivery_cd', '=', $today_non_delivery[$i]->id)
+            ->join('huutous','huutous.id','=','non_delivery_detail.huutou_cd')
+            ->update(['huutous.status_cd' => 3]);
+
+            // 2-2:不着テーブルのcreation_flagを１に変更する
+            $update_list = NonDelivery::where('id', '=', $today_non_delivery[$i]->id)
+            ->update(['non_delivery.creation_flag' => 1]);
+
+        }
+    
+        return redirect('/non_delivery_data_creation')->with(['count'=>$count,'message'=>'不着データ生成が完了しました。' ]);
+        
+
     }
 
     /**

@@ -101,7 +101,7 @@
                     
                         {{-- 読み取り履歴 --}}
 
-                        <div class="read-history">
+                        <div class="read-history non_delivery_read-history">
                             <table class="table">
                                 <thead class="table-header">
                                   <tr>
