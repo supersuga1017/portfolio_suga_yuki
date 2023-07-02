@@ -1,7 +1,7 @@
 <!-- resources/views/books.blade.php -->
 @extends('layouts.app')
 @section('content')
-@section('title', '不着データ生成画面')
+@section('title', '再発送画面')
 
         <!-- バリデーションエラーの表示に使用-->
         @include('common.errors')
@@ -11,9 +11,6 @@
                 {{ session('count') }}つの業務での{{ session('message') }}
             </div>
         @endif
-
-        <p>データ作成リミット：12：00</p>
-
         
         <!-- 登録フォーム -->
         <form action="{{ url('/non_delivery_creation') }}" method="POST" class="form-horizontal">
@@ -56,7 +53,7 @@
                 </div>
                 
                 <button type="submit" class="label__submit">
-                    データ生成（保管→指示待ちへフラグ変更）
+                    まとめて再発送完了
                 </button>
             </div>
             <input type="hidden" name="non_delivery" value={{$non_delivery}}>

@@ -28,6 +28,11 @@
                     <label for="">総通数：    </label>
                     <input type="number" name="all_number" class="label__form">通
                 </div>
+
+                <div class="label__information non_delivery__label-information">
+                    <p>ラベル情報 </p>
+                    <p>{{date('Y/m/d')}}の印刷枚数：{{ $today_label_number }}枚</p>
+                </div>
                 
                 <button type="submit" class="label__submit">
                     登録

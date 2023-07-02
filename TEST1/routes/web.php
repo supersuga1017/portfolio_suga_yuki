@@ -10,6 +10,7 @@ use App\Models\NonDelivery;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\LabelsController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\StatusSearchController;
 use App\Http\Controllers\NondeliveryController;
 use Illuminate\Http\Request;
@@ -35,6 +36,13 @@ Route::get('/', function () {
     return view('main');
 });
 
+Route::get('/resend', function () {
+    return view('resend');
+});
+
+Route::get('/waste', function () {
+    return view('waste');
+});
 
 
 Route::get('/waste_management', function () {
@@ -47,6 +55,8 @@ Route::get('/syougou_creation', function () {
 
 Route::get('/non_delivery_data_creation', [NondeliveryController::class, 'index_creation'])->name('non_delivery_data_creation.index_creation');
 Route::get('/status_search', [StatusSearchController::class, 'index'])->name('status_search.index');
+Route::get('/order', [OrderController::class, 'index'])->name('order.index');
+Route::post('/status_search', [StatusSearchController::class, 'store'])->name('status_search.store');
 
 
 Route::get('/picking', function () {
@@ -57,13 +67,10 @@ Route::get('/picking', function () {
 
 
 Route::get('/non_delivery', [NondeliveryController::class, 'index'])->name('non_delivery.index');
+Route::get('/label', [LabelsController::class, 'index'])->name('label.index');
 
 
-Route::get('/label', function () {
-    $gyoumu = Gyoumu::orderBy('id','asc')->get();
-    
-    return view('label',['gyoumu' => $gyoumu]);
-});
+
 
 // ページ遷移
 // Route::post('/label/create', [LabelsController::class, 'label_create'])->name('label.create');

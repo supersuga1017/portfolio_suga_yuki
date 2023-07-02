@@ -203,6 +203,24 @@ body{
 
 }
 
+.table__flag-color{
+    background-color: cornsilk;
+}
+
+.table__flag-color--red{
+    background-color: salmon;
+}
+
+.table__flag-color--blue{
+    background-color: skyblue;
+}
+
+.table__flag-color--green{
+    background-color:darkgreen;
+    color:white;
+}
+
+
 /* .table-body{
     height: 400px;
     overflow: hidden;

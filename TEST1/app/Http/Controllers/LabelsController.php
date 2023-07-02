@@ -1,10 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Controllers\DB;
+
 
 use Illuminate\Http\Request;
 //使うClassを宣言:自分で追加
 use App\Models\Label;
+use App\Models\Gyoumu;
 use Validator;  //バリデーションを使えるようにする
 use Auth;       //認証モデルを使用する
 
@@ -14,7 +17,16 @@ class LabelsController extends Controller
     //
     //更新
     public function index(Request $request) {
+        $gyoumu = Gyoumu::orderBy('id','asc')->get();
 
+        $today = date('Y-m-d');
+
+        //当日のラベル印刷枚数を表示
+        $today_label_number_db = Label::select('all_number')
+        ->whereDate('non_delivery_data', $today)
+        ->get();
+
+        return view('label',['gyoumu' => $gyoumu,'today_label_number' =>$today_label_number_db]);
     }
 
     //バリデーション

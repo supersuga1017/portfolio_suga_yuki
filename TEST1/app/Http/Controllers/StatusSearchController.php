@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\Models\NonDelivery;
 use App\Models\Status;
+use App\Models\Gyoumu;
+
 use App\Models\NonDeliveryDetail;
 
 use Illuminate\Http\Request;
@@ -10,17 +12,31 @@ use Illuminate\Http\Request;
 class StatusSearchController extends Controller
 {
     private $non_delivery_controller;
+    private $non_delivery_detail_controller;
+    private $status;
+    private $gyoumu;
+    private $views;  //ビューに送る変数をまとめている連想配列
 
     public function __construct()
     {
         $today = date('Y-m-d');
         // $this->middleware('auth');
 
+
+        // モデルを構築
         $this->non_delivery_controller  = NonDelivery::orderBy('date','asc')
         ->where('creation_flag', '=', 0)
         ->join('gyoumu', 'non_delivery.gyoumu_cd', '=', 'gyoumu.id')
         ->whereDate('date', $today)
         ->get();
+
+        $this->status  = Status::get();
+        $this->gyoumu  = Gyoumu::get();
+
+        $this->non_delivery_detail_controller  = NonDeliveryDetail::orderBy('huutous.status_cd','asc')->orderBy('gyoumu_cd','asc')
+        ->orderBy('date','asc')
+        ->join('huutous', 'huutous.id', '=', 'huutou_cd')
+        ->join('statuses', 'statuses.id', '=', 'huutous.status_cd');
 
     }
     /**
@@ -28,20 +44,34 @@ class StatusSearchController extends Controller
      */
     public function index()
     {
-        //
+        // $statuses  =  $this->status;
+        $non_delivey_detail  = $this->non_delivery_detail_controller->get();
 
-        $status  = Status::get();
-        // dd($status);
-        $non_delivey_detail  = NonDeliveryDetail::orderBy('huutous.status_cd','asc')->orderBy('gyoumu_cd','asc')
-        ->orderBy('date','asc')
-        ->join('huutous', 'huutous.id', '=', 'huutou_cd')
-        ->join('statuses', 'statuses.id', '=', 'huutous.status_cd')
-        ->get();
-
-        // dd($non_delivey_detail);
-
-        return view('status_search',['non_delivery'=> $non_delivey_detail,"status"=>$status]);
+        $views = ['non_delivery_detail'=> $non_delivey_detail,"statuses" => $this->status,"gyoumu" => $this->gyoumu];
+        return view('status_search',$views);
     }
+
+     // 状態に合わせて、Statusの背景色を変える
+     public function status_color(int $status_id)
+     {
+         //
+        //  $status_id = 1;
+         if($status_id == 6){
+            return "table__flag-color--red";
+         }
+        elseif($status_id == 3){
+            return "table__flag-color--green";
+
+         }
+         elseif($status_id == 7){
+            return "table__flag-color--green";
+
+         }
+         else{
+            return "table__flag-color--green";
+
+         }
+     }
 
     /**
      * Show the form for creating a new resource.
@@ -56,7 +86,17 @@ class StatusSearchController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //送られた状態CDに応じてモデルの条件を更新する
+        $statuses_flag = $request->statuses; //絞り込む状態CDを取得
+
+        if($statuses_flag != 0){//$statuses_flagがすべて以外なら絞り込み
+            $non_delivey_detail  = $this->non_delivery_detail_controller->where('statuses.id', '=', $statuses_flag)
+            ->get();
+        }else{
+            $non_delivey_detail  = $this->non_delivery_detail_controller->get();
+        }
+
+        return view('status_search',['non_delivery_detail'=> $non_delivey_detail,"statuses" => $this->status]);
     }
 
     /**

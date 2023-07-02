@@ -1,7 +1,7 @@
 <!-- resources/views/books.blade.php -->
 @extends('layouts.app')
 @section('content')
-@section('title', '不着データ生成画面')
+@section('title', '廃棄完了画面')
 
         <!-- バリデーションエラーの表示に使用-->
         @include('common.errors')
