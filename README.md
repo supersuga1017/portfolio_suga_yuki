@@ -11,19 +11,19 @@ http://myservice-web.com/
 ## 基本機能
 
 ## 開発環境
-・フロントエンド<br>
+・**フロントエンド**<br>
     - HTML/CSS<br>
     - JQuery<br>
-・バックエンド
-    - PHP(8.2.4)
-    - Laravel(10.9.0)
-    - MySQL(8.0.23)
-・インフラ
-    - AWS(Routes53/EC2/VPC)
-・ バージョン管理
-    - Git/GitHub
-・開発環境
-    - VScode
+・**バックエンド**<br>
+    - PHP(8.2.4)<br>
+    - Laravel(10.9.0)<br>
+    - MySQL(8.0.23)<br>
+・**インフラ**<br>
+    - AWS(Routes53/EC2/VPC)<br>
+・ **バージョン管理**<br>
+    - Git/GitHub<br>
+・**開発環境**<br>
+    - VScode<br>
 
 ## 基本機能
 
