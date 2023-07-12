@@ -8,21 +8,25 @@
 サイトURL
 http://myservice-web.com/
 
+システム図解
+![システム図解](relative/path/to/yago.png)
+
+
 ## 基本機能
 
 ## 開発環境
-・<br>**フロントエンド**<br>
+<br>・**フロントエンド**<br>
     - HTML/CSS<br>
-    - JQuery<br><br>
-・<br>**バックエンド**<br>
+    - JQuery<br>
+<br>・**バックエンド**<br>
     - PHP(8.2.4)<br>
     - Laravel(10.9.0)<br>
     - MySQL(8.0.23)<br>
-・<br>**インフラ**<br>
+<br>・**インフラ**<br>
     - AWS(Routes53/EC2/VPC)<br>
-・ <br>**バージョン管理**<br>
+<br>・ **バージョン管理**<br>
     - Git/GitHub<br>
-・<br>**開発環境**<br>
+<br>・**開発環境**<br>
     - VScode<br>
 
 ## システム構成図
