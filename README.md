@@ -11,9 +11,9 @@ http://myservice-web.com/
 ## 基本機能
 
 ## 開発環境
-・フロントエンド
-    - HTML/CSS
-    - JQuery
+・フロントエンド<br>
+    - HTML/CSS<br>
+    - JQuery<br>
 ・バックエンド
     - PHP(8.2.4)
     - Laravel(10.9.0)
