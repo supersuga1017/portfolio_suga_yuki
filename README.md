@@ -42,6 +42,9 @@ http://myservice-web.com/
 
 ## システム構成図
 
+![システム構成図](/aws.drawio.png)
+
+
 ## 画面遷移図
 
 ![画面遷移図](/画面遷移図.jpg)
