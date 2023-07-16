@@ -12,8 +12,8 @@
 サイトURL）<br>
 http://myservice-web.com/
 
-システム図解：<br>
-![システム図解](/yago.png)
+全体フロー：<br>
+![全体フロー](/全体フロー.jpg)
 
 
 ## 基本機能<br>
