@@ -10,28 +10,56 @@
         <!-- 登録完了の表示に使用-->
         @if (session('message'))
             <div class="complete-message system__complete-message">
-                {{ session('non_delivery_data') }}に{{ session('all_number') }}件の{{ session('message') }}
+                {{ session('count') }}件の{{ session('message') }}
                 {{-- @yield('alert') --}}
             </div>
         @endif
 
         <!-- 登録フォーム -->
-        <form action="{{ url('/label/register') }}" method="POST" class="form-horizontal">
+        <form action="{{ url('/order_complete') }}" method="POST" class="form-horizontal">
             @csrf
             <div class="label__forms">
-                <div class="label__row">
-                    <label for="">不着登録日：</label>
-                    <input type="date" name="non_delivery_data" class="label__form" value="{{ date('Y-m-d') }}">
-                </div>
-              
-                
-                <button type="submit" class="label__submit">
-                    登録
+                <button type="submit" class="label__submit order__submit">
+                    指示データ作成
                 </button>
-            </div>
-        
-        </form>
+              
 
+                <div class="system__table read-content">
+                    <table class="table">
+                        <thead class="table-header">
+                          <tr>
+                            <th>日付</th>
+                            <th>業務CD</th>
+                            <th>書留番号</th>
+                            <th>管理番号</th>
+                            <th>封筒QR</th>
+                            <th>状態</th>
+                           
+                          </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($non_delivery as $non)
+                              <tr class="table-row">
+                                {{-- 例)value="MUBR11" selected(SESSIONと一致していれば)> --}}
+                                {{-- <option value={{ $gyo->id }} {{ session('gyoumu') == $gyo->id ? 'selected' : '' }}>{{ $gyo->name }} </option>     --}}
+                                <td>{{  \Carbon\Carbon::parse($non->non_delivery_date)->format('Y/m/d')}}</td>
+                                <td>{{ $non->gyoumu_cd }}</td>
+                                <td>{{ $non->kakitome_number}}</td>
+                                <td>{{ $non->manage_number}}</td>
+                                <td>{{ $non->huutou_qr_number}}</td>
+                                <td>{{ $non->name}}</td>
+                              </tr>
+                            @endforeach
+                         
+                        </tbody>
+                      </table>
+                      
+                </div>
+             
+            </div>
+            {{-- <input type="hidden" name="non_delivery" value={{$non_delivery}}> --}}
+        </form>
+    
     <!-- Book: 既に登録されてる本のリスト -->
 
 @endsection 

@@ -12,20 +12,17 @@
                 {{ session('count') }}つの業務での{{ session('message') }}
             </div>
         @endif
-
-        <p>データ作成リミット：12：00</p>
-
           <!-- 登録フォーム -->
         <form action="{{ url('/status_search') }}" method="POST" class="form-horizontal">
             @csrf
             <div class="label__forms">
                 <div class="label__row">
-                    <label for="">不着登録日：</label>
+                    {{-- <label for="">不着登録日：</label>
                     <input type="date" name="non_delivery_data" class="label__form" value="{{ date('Y-m-d') }}">
 
                     <label for="">書留番号：</label>
                     <input type="number" name="kakitome_number" class="label__form" value="" placeholder="任意の数字">
-                    <br>
+                    <br> --}}
 
                     
                     <label for="">状態：</label>
@@ -36,13 +33,13 @@
                         @endforeach
                     </select>
 
-                    <label for="">業務CD：</label>
+                    {{-- <label for="">業務CD：</label>
                     <select class="label__form" id="statuses" name="statuses">
                         <option value="0">全て</option>    
                         @foreach ($gyoumu as $gyo)
                             <option value={{ $gyo->id }}>{{ $gyo->name }}</option>    
                         @endforeach
-                    </select>
+                    </select> --}}
 
 
                     <button type="submit" class="label__submit">

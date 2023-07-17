@@ -18,6 +18,17 @@ class NondeliveryController extends Controller
 {
     //
     private $non_delivery_controller;
+    private $non_delivery_detail_resend_controller;
+    private $non_delivery_detail_waste_controller;
+
+    private $temporary_flag_cd = 1; //一時登録のフラグCD
+    private $order_flag_cd = 2; //指示待ちのフラグCD
+    private $waste_flag_cd = 5; //廃棄のフラグCD
+    private $waste_complete_flag_cd = 6; //廃棄完了のフラグCD
+
+    private $resend_flag_cd = 3; //再発送のフラグCD
+    private $resend_complete_flag_cd = 4; //再発送完了のフラグCD
+    
     //コンストラクタ （このクラスが呼ばれたら最初に処理をする）
 
     public function __construct()
@@ -25,11 +36,28 @@ class NondeliveryController extends Controller
         $today = date('Y-m-d');
         // $this->middleware('auth');
 
+       
+
         $this->non_delivery_controller  = NonDelivery::orderBy('date','asc')
         ->where('creation_flag', '=', 0)
         ->join('gyoumu', 'non_delivery.gyoumu_cd', '=', 'gyoumu.id')
         ->whereDate('date', $today)
         ->get();
+
+        $this->non_delivery_detail_resend_controller  =NonDeliveryDetail::orderBy('huutous.status_cd','asc')->orderBy('gyoumu_cd','asc')
+        ->orderBy('date','asc')
+        ->join('huutous', 'huutous.id', '=', 'huutou_cd')
+        ->join('statuses', 'statuses.id', '=', 'huutous.status_cd')
+        ->where('statuses.id', '=', $this->resend_flag_cd)
+        ->get();
+
+        $this->non_delivery_detail_waste_controller  =NonDeliveryDetail::orderBy('huutous.status_cd','asc')->orderBy('gyoumu_cd','asc')
+        ->orderBy('date','asc')
+        ->join('huutous', 'huutous.id', '=', 'huutou_cd')
+        ->join('statuses', 'statuses.id', '=', 'huutous.status_cd')
+        ->where('statuses.id', '=', $this->waste_flag_cd)
+        ->get();
+
 
     }
     /**
@@ -75,13 +103,45 @@ class NondeliveryController extends Controller
         return view('non_delivery_data_creation',['non_delivery' => $non_delivery,'today_non_delivery_number' => $today_non_delivery_number]);
 
     }
+
+    public function index_resend()
+    {
+
+        $today = date('Y-m-d');
+
+        $non_delivery_detail = $this->non_delivery_detail_resend_controller;
+        // dd($non_delivery_detail);
+
+
+
+        //$today_label_number_db[0]->all_numberがNULLでなければ、$today_label_numberに代入
+        // NULLなら0を代入
+        $today_non_delivery_number = $non_delivery_detail->count();
+        return view('resend',['non_delivery' => $non_delivery_detail,'today_non_delivery_number' => $today_non_delivery_number]);
+
+    }
+
+    public function index_waste()
+    {
+
+        $today = date('Y-m-d');
+
+        $non_delivery = $this->non_delivery_detail_waste_controller;
+
+        // NULLなら0を代入
+        $today_non_delivery_number = $non_delivery->count();
+        return view('waste',['non_delivery' => $non_delivery,'today_non_delivery_number' => $today_non_delivery_number]);
+
+    }
+
+
     //バリデーション
     public function getNondeliverylValidator(Request $request) {
         //バリデーション
         $validator = Validator::make($request->all(), [
-            'kakitome_number' => 'required | min:1 | max:10',
-            'manage_number' => 'required | min:1 | max:10',
-            'huutou_qr_number' => 'required | min:1 | max:10',
+            'kakitome_number' => 'required | min:1 | max:9',
+            'manage_number' => 'required | min:1 | max:9',
+            'huutou_qr_number' => 'required | min:1 | max:9',
         ]);
         return $validator;
     }
@@ -132,6 +192,19 @@ class NondeliveryController extends Controller
 
     }
 
+    public function session_delete(Request $request){
+        // sessionの削除
+        session()->forget('start');
+        session()->forget('huutous');
+        // session()->forget('count');
+        session()->forget('non_delivery_date');
+        session()->forget('gyoumu');
+        session()->forget('return_reason');
+
+        return redirect('/non_delivery')->with(['message_temporary'=>'一時登録済みのデータを削除しました。']);
+
+    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -156,7 +229,7 @@ class NondeliveryController extends Controller
             //2:封筒自体の登録
             $huutous = new Huutou;
             $huutous->non_delivery_date = $request->non_delivery_date;
-            $huutous->status_cd = 6;
+            $huutous->status_cd = $this->temporary_flag_cd;
             $huutous->kakitome_number = session('huutous')[$i]['kakitome'];
             $huutous->manage_number = session('huutous')[$i]['manage'];
             $huutous->huutou_qr_number = session('huutous')[$i]['huutou_qr'];
@@ -198,22 +271,7 @@ class NondeliveryController extends Controller
         return redirect('/non_delivery')->with(['count'=>$count,'message'=>'不着登録が完了しました。' ]);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
+    
     /**
      * Update the specified resource in storage.
      */
@@ -225,6 +283,7 @@ class NondeliveryController extends Controller
         //1:不着登録テーブルのIDを取得  (例：2,3,4,5)
         $today_non_delivery = NonDelivery::orderBy('date','asc')
         ->select('id','creation_flag')
+        ->where('creation_flag', '=', 0)
         ->whereDate('date', $today)->get();;
 
         $count = $today_non_delivery->count();//モデルのデータ数を取得
@@ -232,10 +291,11 @@ class NondeliveryController extends Controller
         // 2:不着登録テーブルIDの不着明細テーブル上に紐づく封筒CDの状態を更新する  
         // 不着登録の１くぎり回数だけ繰り返し(例：2,3,4,5)だと4回繰り返し
         for ($i = 0; $i < $count; $i++) {
-            // 2-1:不着明細テーブル上のstatus_cdのステータスを6→3に変更する
+            // 2-1:不着明細テーブル上のstatus_cdのステータスを1→2に変更する
             $creation_list = NonDeliveryDetail::where('non_delivery_cd', '=', $today_non_delivery[$i]->id)
+            ->where('huutous.status_cd', '=', $this->temporary_flag_cd)
             ->join('huutous','huutous.id','=','non_delivery_detail.huutou_cd')
-            ->update(['huutous.status_cd' => 3]);
+            ->update(['huutous.status_cd' => $this->order_flag_cd]);
 
             // 2-2:不着テーブルのcreation_flagを１に変更する
             $update_list = NonDelivery::where('id', '=', $today_non_delivery[$i]->id)
@@ -248,10 +308,62 @@ class NondeliveryController extends Controller
 
     }
 
+     //廃棄完了
+     public function update_waste_complete()
+     {
+         $today = date('Y-m-d');
+
+         $count = $this->non_delivery_detail_waste_controller->count();//モデルのデータ数を取得
+
+         //不着明細テーブルの状態フラグを廃棄完了に変更する
+          // 2-1:不着明細テーブル上のstatus_cdのステータス5→6を変更する
+          $creation_list = NonDeliveryDetail::where('huutous.status_cd', '=', $this->waste_flag_cd)
+          ->join('huutous','huutous.id','=','non_delivery_detail.huutou_cd')
+          ->update(['huutous.status_cd' => $this->waste_complete_flag_cd]);
+     
+         return redirect('/waste')->with(['count'=>$count,'message'=>'廃棄が完了しました。' ]);
+         
+     }
+ 
+ 
+     //再発送完了
+     public function update_resend_complete()
+     {
+ 
+         $today = date('Y-m-d');
+
+         $count = $this->non_delivery_detail_resend_controller->count();//モデルのデータ数を取得
+
+         //不着明細テーブルの状態フラグを再発送完了に変更する
+         // 2-1:不着明細テーブル上のstatus_cdのステータス3→4を変更する
+         $creation_list = NonDeliveryDetail::where('huutous.status_cd', '=', $this->resend_flag_cd)
+         ->join('huutous','huutous.id','=','non_delivery_detail.huutou_cd')
+         ->update(['huutous.status_cd' => $this->resend_complete_flag_cd]);
+ 
+         return redirect('/resend')->with(['count'=>$count,'message'=>'再発送が完了しました。' ]);
+         
+     }
+
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
     {
         //
     }

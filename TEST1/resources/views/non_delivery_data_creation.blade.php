@@ -7,12 +7,12 @@
         @include('common.errors')
         <!-- バリデーションエラーの表示に使用-->
         @if (session('message'))
-            <div class="alert alert-success">
+            <div class="complete-message system__complete-message">
                 {{ session('count') }}つの業務での{{ session('message') }}
             </div>
         @endif
 
-        <p>データ作成リミット：12：00</p>
+        {{-- <p>データ作成リミット：12：00</p> --}}
 
         
         <!-- 登録フォーム -->
@@ -32,7 +32,7 @@
                         <thead class="table-header">
                           <tr>
                             <th>業務ID</th>
-                            <th>区分</th>
+            
                             <th>業務名</th>
                             <th>件数</th>
                            
@@ -44,7 +44,7 @@
                                 {{-- 例)value="MUBR11" selected(SESSIONと一致していれば)> --}}
                                 {{-- <option value={{ $gyo->id }} {{ session('gyoumu') == $gyo->id ? 'selected' : '' }}>{{ $gyo->name }} </option>     --}}
                                 <td>{{ $non->gyoumu_cd }}</td>
-                                <td>2</td>
+                               
                                 <td>{{ $non->name}}</td>
                                 <td>{{ $non->number}}</td>
                               </tr>
@@ -56,7 +56,7 @@
                 </div>
                 
                 <button type="submit" class="label__submit">
-                    データ生成（保管→指示待ちへフラグ変更）
+                    データ生成（一時登録→指示待ちへフラグ変更）
                 </button>
             </div>
             <input type="hidden" name="non_delivery" value={{$non_delivery}}>

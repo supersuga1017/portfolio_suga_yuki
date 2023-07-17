@@ -59,7 +59,7 @@
         <div class="main__manual">
            
            <div class="main__manual-button">
-                <a href="">業務マニュアルはこちら</a>
+                <a href="https://github.com/supersuga1017/portfolio_suga_yuki/tree/master">業務マニュアルはこちら!!!!!!!!!!!!</a>
             </div>
         </div>
 

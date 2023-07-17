@@ -29,10 +29,10 @@
                     <input type="number" name="all_number" class="label__form">通
                 </div>
 
-                <div class="label__information non_delivery__label-information">
+                {{-- <div class="label__information non_delivery__label-information">
                     <p>ラベル情報 </p>
                     <p>{{date('Y/m/d')}}の印刷枚数：{{ $today_label_number }}枚</p>
-                </div>
+                </div> --}}
                 
                 <button type="submit" class="label__submit">
                     登録
@@ -42,7 +42,7 @@
         </form>
 
         <!-- 新規印刷登録フォーム -->
-        <form action="{{ url('/label/new-print') }}" method="POST" class="form-horizontal">
+        {{-- <form action="{{ url('/label/new-print') }}" method="POST" class="form-horizontal">
             @csrf
             <p>新規印刷</p>
             <div class="label__forms">
@@ -71,7 +71,7 @@
         
         </form>
 
-        <p>末番削除</p>
+        <p>末番削除</p> --}}
 
     <!-- Book: 既に登録されてる本のリスト -->
 

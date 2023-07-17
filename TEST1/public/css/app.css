@@ -3,6 +3,10 @@
     color: red;
 }
 
+body{
+    background-color: #F2F2F2;
+}
+
 input[type="checkbox"] {
     border: 1px solid #000;
     width: 10px;
@@ -48,9 +52,9 @@ body{
     color: white;
     font-weight: bold;
     font-size: 20px;
-    background-color: blue;
+    background-color: #3A4A7D;
     text-align: center;
-    padding: 10px 0;
+    padding: 15px 0;
     margin-bottom: 50px;
 }
 
@@ -73,7 +77,8 @@ body{
 }
 
 .back-button{
-    background-color: ghostwhite;
+    background-color: #7F8FA6;
+    color: white;
     display: inline-block;
     padding: 15px;
 }
@@ -110,14 +115,15 @@ body{
 
 .main__button{
     display: block;
-    background-color: aquamarine;
+    background-color: #7F8FA6;
+    color: white;
     margin-right: 10px;
     margin-bottom: 20px;
 }
 
 .main__manual-button{
     display: block;
-    background-color: silver;
+    background-color: #D3D3D3;
     text-align: center;
     margin-right: 10px;
     margin-bottom: 20px;
@@ -156,7 +162,8 @@ body{
 }
 
 .label__submit{
-    background-color: aliceblue;
+    background-color: #7F8FA6;
+    color: white;
     padding: 10px;
 }
 
@@ -178,6 +185,11 @@ body{
 }
 /* --------------------- */
 
+.order__submit{
+    margin-bottom: 30px;
+    
+}
+
 
 /* non_delivery_data_creation.blade----------------- */
 /* --------------------- */
@@ -192,7 +204,8 @@ body{
 }
 
 .table-header tr th{
-    background-color: aliceblue;
+    background-color: #7F8FA6;
+    color: white;
     padding: 10px;
     text-align: center;
 

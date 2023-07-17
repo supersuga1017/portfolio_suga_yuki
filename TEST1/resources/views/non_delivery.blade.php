@@ -96,6 +96,8 @@
                             <button type="submit" class="label__submit" formaction="{{ url('/non_delivery/temporary_store') }}">
                                 1件完了
                             </button>
+
+                             
                         
                         </div>
                     
@@ -135,11 +137,15 @@
                         <button type="submit" class="label__submit" form="form_finish">
                             読取完了
                         </button>
-
                         
 
                         <button type="submit" class="label__submit modal-close-two">
                             キャンセル
+                        </button>
+
+                        {{-- 違うページへPOST --}}
+                        <button type="submit" class="label__submit" formaction="{{ url('/non_delivery/session_delete') }}">
+                            全件削除
                         </button>
                     </div>
                 </div>

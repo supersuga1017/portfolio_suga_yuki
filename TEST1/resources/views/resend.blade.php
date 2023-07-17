@@ -7,13 +7,13 @@
         @include('common.errors')
         <!-- バリデーションエラーの表示に使用-->
         @if (session('message'))
-            <div class="alert alert-success">
-                {{ session('count') }}つの業務での{{ session('message') }}
+            <div class="complete-message system__complete-message">
+                {{ session('count') }}件の{{ session('message') }}
             </div>
         @endif
         
         <!-- 登録フォーム -->
-        <form action="{{ url('/non_delivery_creation') }}" method="POST" class="form-horizontal">
+        <form action="{{ url('/resend_complete') }}" method="POST" class="form-horizontal">
             @csrf
             <div class="label__forms">
                 <div class="label__row">
@@ -28,10 +28,12 @@
                     <table class="table">
                         <thead class="table-header">
                           <tr>
-                            <th>業務ID</th>
-                            <th>区分</th>
-                            <th>業務名</th>
-                            <th>件数</th>
+                            <th>日付</th>
+                            <th>業務CD</th>
+                            <th>書留番号</th>
+                            <th>管理番号</th>
+                            <th>封筒QR</th>
+                            <th>状態</th>
                            
                           </tr>
                         </thead>
@@ -40,10 +42,12 @@
                               <tr class="table-row">
                                 {{-- 例)value="MUBR11" selected(SESSIONと一致していれば)> --}}
                                 {{-- <option value={{ $gyo->id }} {{ session('gyoumu') == $gyo->id ? 'selected' : '' }}>{{ $gyo->name }} </option>     --}}
+                                <td>{{  \Carbon\Carbon::parse($non->non_delivery_date)->format('Y/m/d')}}</td>
                                 <td>{{ $non->gyoumu_cd }}</td>
-                                <td>2</td>
+                                <td>{{ $non->kakitome_number}}</td>
+                                <td>{{ $non->manage_number}}</td>
+                                <td>{{ $non->huutou_qr_number}}</td>
                                 <td>{{ $non->name}}</td>
-                                <td>{{ $non->number}}</td>
                               </tr>
                             @endforeach
                          

@@ -36,13 +36,6 @@ Route::get('/', function () {
     return view('main');
 });
 
-Route::get('/resend', function () {
-    return view('resend');
-});
-
-Route::get('/waste', function () {
-    return view('waste');
-});
 
 
 Route::get('/waste_management', function () {
@@ -54,23 +47,26 @@ Route::get('/syougou_creation', function () {
 });
 
 Route::get('/non_delivery_data_creation', [NondeliveryController::class, 'index_creation'])->name('non_delivery_data_creation.index_creation');
+Route::get('/resend', [NondeliveryController::class, 'index_resend'])->name('resend.index_resend');
+Route::get('/waste', [NondeliveryController::class, 'index_waste'])->name('waste.index_waste');
 Route::get('/status_search', [StatusSearchController::class, 'index'])->name('status_search.index');
 Route::get('/order', [OrderController::class, 'index'])->name('order.index');
 Route::post('/status_search', [StatusSearchController::class, 'store'])->name('status_search.store');
 
 
-Route::get('/picking', function () {
-    $status = Status::orderBy('id','asc')->get();
-    // dd($status);
-    return view('picking_list_output',['status'=> $status]);
-});
+
 
 
 Route::get('/non_delivery', [NondeliveryController::class, 'index'])->name('non_delivery.index');
 Route::get('/label', [LabelsController::class, 'index'])->name('label.index');
 
 
-
+// ピッキングリスト出力画面へ　カット
+// Route::get('/picking', function () {
+//     $status = Status::orderBy('id','asc')->get();
+//     // dd($status);
+//     return view('picking_list_output',['status'=> $status]);
+// });
 
 // ページ遷移
 // Route::post('/label/create', [LabelsController::class, 'label_create'])->name('label.create');
@@ -85,9 +81,19 @@ Route::post('/label/register', [LabelsController::class, 'label_register'])->nam
 
 Route::post('/non_delivery/temporary_store', [NondeliveryController::class, 'temporary_store'])->name('non_delivery.temporary_store');
 Route::post('/non_delivery', [NondeliveryController::class, 'store'])->name('non_delivery.store');
+Route::post('/non_delivery/session_delete', [NondeliveryController::class, 'session_delete'])->name('non_delivery.session_delete');
 
 Route::post('/non_delivery_creation', [NondeliveryController::class, 'update'])->name('non_delivery_creation.update');
 
+//指示データ作成
+Route::post('/order_complete', [OrderController::class, 'order_complete'])->name('order.order_complete');
+
+
+// 廃棄完了
+Route::post('/waste_complete', [NondeliveryController::class, 'update_waste_complete'])->name('waste.update_waste_complete');
+
+//再発送完了
+Route::post('/resend_complete', [NondeliveryController::class, 'update_resend_complete'])->name('resend.update_resend_complete');
 
 // Route::post('/non_delivery', function (Request $request) {
     
