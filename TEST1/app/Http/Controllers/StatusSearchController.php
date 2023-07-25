@@ -56,19 +56,20 @@ class StatusSearchController extends Controller
      {
          //
         //  $status_id = 1;
-         if($status_id == 6){
-            return "table__flag-color--red";
-         }
-        elseif($status_id == 3){
-            return "table__flag-color--green";
+         if($status_id == 4 or $status_id ==6){
+            return "table__flag-color--last";
 
          }
-         elseif($status_id == 7){
-            return "table__flag-color--green";
+        elseif($status_id == 1 or $status_id == 2){
+            return "table__flag-color--first";
+
+         }
+         elseif($status_id == 3 or $status_id ==5 or $status_id == 7){
+            return "table__flag-color--middle";
 
          }
          else{
-            return "table__flag-color--green";
+            return "table__flag-color";
 
          }
      }

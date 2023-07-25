@@ -7,6 +7,8 @@ body{
     background-color: #F2F2F2;
 }
 
+
+
 input[type="checkbox"] {
     border: 1px solid #000;
     width: 10px;
@@ -33,6 +35,14 @@ input[type="checkbox"]:checked {
   
 body{
     font-size: 20px;
+}
+
+/* 768px以下の場合のスタイル */
+@media (max-width: 768px) {
+    /* ここに適用したいスタイルを記述 */
+    body{
+        font-size: 12px;
+    }
 }
 
 .alert-message{
@@ -217,19 +227,19 @@ body{
 }
 
 .table__flag-color{
-    background-color: cornsilk;
+    background-color: #F2F2F2;
 }
 
-.table__flag-color--red{
-    background-color: salmon;
+.table__flag-color--first{
+    background-color: #DCDCDC;
 }
 
-.table__flag-color--blue{
-    background-color: skyblue;
+.table__flag-color--middle{
+    background-color: #A9A9A9;
 }
 
-.table__flag-color--green{
-    background-color:darkgreen;
+.table__flag-color--last{
+    background-color:#848484;
     color:white;
 }
 
@@ -257,7 +267,6 @@ body{
 	top: 0;
 	left: 0;
 	width: 100%;
-	width: 100%;
 	height: 100%;
 	text-align: center;
 	background: rgba(0,0,0,50%);
@@ -271,7 +280,9 @@ body{
 /*モーダル本体の擬似要素の指定*/
 .modal-container:before{
 	content: "";
-	display: inline-block;
+    position: relative;
+    top: 200px;
+	/* display: inline-block; */
 	vertical-align: middle;
 	height: 100%;
 }
@@ -283,6 +294,7 @@ body{
 /*モーダル枠の指定*/
 .modal-body{
 	position: relative;
+    top: 0px;
 	display: inline-block;
 	vertical-align: middle;
 	max-width: 1000px;
