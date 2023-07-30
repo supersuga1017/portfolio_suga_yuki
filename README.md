@@ -10,7 +10,7 @@
 ・得意先（クライアント）が封筒ごとに再発送、廃棄を設定することができる<br>
 
 サイトURL）<br>
-http://myservice-web.com/
+https://myservice-web.com/
 
 全体フロー：<br>
 ![全体フロー](/全体フロー.jpg)
