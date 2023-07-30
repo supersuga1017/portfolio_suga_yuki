@@ -2,6 +2,7 @@
 @extends('layouts.app')
 @section('content')
 @section('title', '封筒管理システム：作業メイン画面')
+@section('description', 'こちらメイン画面です。')
 
     <!-- Bootstrapの定形コード… -->
     <div class="card-body">

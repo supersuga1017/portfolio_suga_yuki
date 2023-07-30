@@ -2,6 +2,8 @@
 @extends('layouts.app')
 @section('content')
 @section('title', '再発送画面')
+@section('description', 'こちらの画面では、「再発送」の指示データを受けた封筒を「再発送完了」にできます。')
+
 
         <!-- バリデーションエラーの表示に使用-->
         @include('common.errors')

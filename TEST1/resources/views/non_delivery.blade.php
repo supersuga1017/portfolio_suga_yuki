@@ -2,6 +2,7 @@
 @extends('layouts.app')
 @section('content')
 @section('title', '不着登録画面')
+@section('description', 'こちらの画面では、不着封筒をまとめて登録することができます。')
 @section('modal', '')
 
     <!-- Bootstrapの定形コード… -->

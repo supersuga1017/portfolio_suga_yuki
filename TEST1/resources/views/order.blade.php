@@ -3,6 +3,8 @@
 @section('content')
 @section('title', '指示データ作成画面')
 @section('alert', 'ラベル印刷画面')
+@section('description', 'こちらの画面では、不着データ生成が完了したデータが表示され、指示データ（再発送 or 廃棄 or 保管）を取得できます。')
+
 
         <!-- バリデーションエラーの表示に使用-->
         @include('common.errors')

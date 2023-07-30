@@ -72,6 +72,12 @@ body{
     margin-bottom: 20px;
 }
 
+.system__description{
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+
 .system-back{
     width: 100%;
     margin: 0 auto;
@@ -211,18 +217,28 @@ body{
     border: 1px solid black;
     width: 100%;
     text-align: center;
+    height: 800px;
+    overflow-y: scroll;
+    /* display: inline-block; */
+}
+
+tbody{
+    width: 100%;
 }
 
 .table-header tr th{
     background-color: #7F8FA6;
     color: white;
     padding: 10px;
+    /* width: 100%; */
+    
     text-align: center;
 
 }
 
 .table-row td{
     padding: 10px;
+    /* width: 20%; */
 
 }
 

@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'すがのサイトver2') }}</title>
+    <title>{{ config('app.name', 'すがのサイト') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -30,6 +30,7 @@
             </div>
             <div class="system__containar">
                 <div class="system__customer-name">得意先名：{{$customer}}</div>
+                <div class="system__description">@yield('description') </div>
                 @yield('content')
                 <div class="system-back">
                         <a class="back-button" href="{{url('/')}}">戻る</a>

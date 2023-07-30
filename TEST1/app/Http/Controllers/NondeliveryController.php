@@ -187,7 +187,7 @@ class NondeliveryController extends Controller
 
         // セッションに2次元配列を保存
         session()->put('huutous', $huutou_data);
-        return redirect('/non_delivery')->with(['message_temporary'=>'一時登録が完了しました。']);
+        return redirect('/non_delivery')->with(['message_temporary'=>'仮登録が完了しました。']);
 
 
     }

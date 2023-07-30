@@ -2,6 +2,8 @@
 @extends('layouts.app')
 @section('content')
 @section('title', '不着データ生成画面')
+@section('description', 'こちらの画面では、不着登録済みの封筒（一時登録）を登録完了状態にし、指示データを受け取れるようになります。')
+
 
         <!-- バリデーションエラーの表示に使用-->
         @include('common.errors')

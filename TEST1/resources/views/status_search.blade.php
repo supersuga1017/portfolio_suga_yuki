@@ -3,6 +3,8 @@
 @inject('status','App\Http\Controllers\StatusSearchController')
 @section('content')
 @section('title', '状態検索画面')
+@section('description', 'こちらの画面では、封筒全ての状態を参照できます。')
+
 
         <!-- バリデーションエラーの表示に使用-->
         @include('common.errors')
@@ -76,7 +78,7 @@
                             @endforeach
                          
                         </tbody>
-                      </table>
+                    </table>
                       
                 </div>
                 
