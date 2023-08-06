@@ -7,6 +7,10 @@ body{
     background-color: #F2F2F2;
 }
 
+img{
+    width: 100%;
+}
+
 
 
 input[type="checkbox"] {
@@ -43,6 +47,14 @@ body{
     body{
         font-size: 12px;
     }
+
+    .system__description{   
+        /* margin-bottom: 20px; */
+        font-size: 12px;
+    }
+    
+
+
 }
 
 .alert-message{
@@ -126,7 +138,7 @@ body{
     width: 100%;
     margin: 0 auto;
     max-width: 1200px;
-    
+    margin-bottom: 20px;
 }
 
 .main__button{
@@ -143,6 +155,20 @@ body{
     text-align: center;
     margin-right: 10px;
     margin-bottom: 20px;
+}
+
+.main__manual-image{
+    margin-bottom: 40px;   
+    width: 100%;
+    max-width: 800px;
+    /* margin: 0 auto; */
+}
+
+.main__manual-image img{  
+    width: 100%;
+    height: 100%;
+    /* max-width: 1000px; */
+    /* margin: 0 auto; */
 }
 
 .main__manual-button a{
@@ -197,6 +223,12 @@ body{
 
 .non_delivery_read-history{
     margin-bottom: 30px;
+
+}
+
+.non_delivery__image{
+    width: 100%;
+    max-width: 700px;
 
 }
 /* --------------------- */

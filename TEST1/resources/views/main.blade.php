@@ -58,7 +58,9 @@
 
 
         <div class="main__manual">
-           
+           <div class="main__manual-image">
+                <img src="{{ asset('images/all-frow.jpg') }}" alt="マニュアル画像">
+           </div>
            <div class="main__manual-button">
                 <a href="https://github.com/supersuga1017/portfolio_suga_yuki/tree/master">業務マニュアルはこちら</a>
             </div>

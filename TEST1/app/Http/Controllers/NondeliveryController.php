@@ -212,6 +212,10 @@ class NondeliveryController extends Controller
     public function store(Request $request)
     {
 
+        if (!session()->has('huutous')) {
+            return redirect('/non_delivery'); // もしくは、return redirect()->back(); など適切な処理を行う
+        }
+
         $count = count(session('huutous')); // セッションデータの数を取得
 
         // 1:不着登録テーブルの登録

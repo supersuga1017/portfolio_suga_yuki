@@ -2,7 +2,7 @@
 @extends('layouts.app')
 @section('content')
 @section('title', '不着登録画面')
-@section('description', 'こちらの画面では、不着封筒をまとめて登録することができます。')
+@section('description', 'こちらの画面では、不着封筒をまとめて登録することができます。入力項目を設定したら読取開始を押してください。')
 @section('modal', '')
 
     <!-- Bootstrapの定形コード… -->
@@ -148,6 +148,10 @@
                         <button type="submit" class="label__submit" formaction="{{ url('/non_delivery/session_delete') }}">
                             全件削除
                         </button>
+
+                        <div class="non_delivery__image">
+                            <img src="{{ asset('images/non_delivery.jpg') }}" alt="マニュアル画像">
+                        </div>
                     </div>
                 </div>
             </div>
