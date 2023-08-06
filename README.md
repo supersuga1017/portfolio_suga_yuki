@@ -10,7 +10,7 @@
 ・得意先（クライアント）が封筒ごとに再発送、廃棄を設定することができる<br>
 
 サイトURL）<br>
-http://myservice-web.com/
+https://myservice-web.com/
 
 全体フロー：<br>
 ![全体フロー](/全体フロー.jpg)
@@ -34,7 +34,7 @@ http://myservice-web.com/
     - Laravel(10.9.0)<br>
     - MySQL(8.0.23)<br>
 <br>・**インフラ**<br>
-    - AWS(Routes53/EC2/VPC)<br>
+    - AWS(Routes53/EC2/VPC/ALB/ACM)<br>
 <br>・ **バージョン管理**<br>
     - Git/GitHub<br>
 <br>・**開発環境**<br>
