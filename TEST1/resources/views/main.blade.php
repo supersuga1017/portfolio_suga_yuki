@@ -32,7 +32,7 @@
 
 
             <div class="main__button">
-                <a href="{{url('/order')}}">3:指示データ作成</a>
+                <a href="{{url('/order')}}">3:指示データ受領</a>
                 <p class="tooltip">不着データ生成が完了したデータが表示され、指示データ（再発送 or 廃棄 or 保管）を取得できます。</p>
             </div>
 

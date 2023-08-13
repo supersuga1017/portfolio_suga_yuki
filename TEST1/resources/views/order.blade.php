@@ -1,7 +1,7 @@
 <!-- resources/views/books.blade.php -->
 @extends('layouts.app')
 @section('content')
-@section('title', '指示データ作成画面')
+@section('title', '指示データ受領画面')
 @section('alert', 'ラベル印刷画面')
 @section('description', 'こちらの画面では、不着データ生成が完了したデータが表示され、指示データ（再発送 or 廃棄 or 保管）を取得できます。')
 
@@ -22,7 +22,7 @@
             @csrf
             <div class="label__forms">
                 <button type="submit" class="label__submit order__submit">
-                    指示データ作成
+                    指示データ受領
                 </button>
               
 
