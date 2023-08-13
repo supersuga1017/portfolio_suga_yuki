@@ -43,6 +43,37 @@
         
         </form>
 
+        <p class="label__table-heading">発行ラベル履歴</p>
+
+        <div class="system__table read-content">
+            <table class="table">
+                <thead class="table-header">
+                  <tr>
+                    <th>日付</th>
+                    <th>ラベル番号</th>
+                    <th>不着登録使用済</th>
+    
+                   
+                  </tr>
+                </thead>
+                <tbody>
+                    @foreach ($gyoumu as $non)
+                      <tr class="table-row">
+                        {{-- 例)value="MUBR11" selected(SESSIONと一致していれば)> --}}
+                        {{-- <option value={{ $gyo->id }} {{ session('gyoumu') == $gyo->id ? 'selected' : '' }}>{{ $gyo->name }} </option>     --}}
+                        {{-- <td>{{  \Carbon\Carbon::parse($non->date)->format('Y/m/d')}}</td> --}}
+                        <td>{{ $non->name }}</td>
+                        <td>{{ $non->name }}</td>
+                        <td>{{ $non->name }}</td>
+                        
+                        
+                      </tr>
+                    @endforeach
+                 
+                </tbody>
+            </table>
+              
+        </div>
         <!-- 新規印刷登録フォーム -->
         {{-- <form action="{{ url('/label/new-print') }}" method="POST" class="form-horizontal">
             @csrf

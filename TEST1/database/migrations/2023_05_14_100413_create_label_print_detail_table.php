@@ -24,6 +24,8 @@ return new class extends Migration
             $table->string('gyoumu_cd');
             $table->foreign('gyoumu_cd')->references('id')->on('gyoumu');
 
+            $table->boolean('used_flag')->default(false);
+
             // $table->unsignedBigInteger('gyoumu_id_cd');
             // $table->foreign('gyoumu_id_cd')->references('id')->on('gyoumu_id');
 
