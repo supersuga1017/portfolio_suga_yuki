@@ -3,7 +3,7 @@
 @section('content')
 @section('title', 'ラベル印刷画面')
 @section('alert', 'ラベル印刷画面')
-@section('description', 'こちらの画面では、不着登録（次の工程）で使用するラベル枚数を指定することができます。')
+@section('description', 'こちらの画面では、不着登録（次の工程）で使用するラベル枚数を指定できます。')
 
 
         <!-- バリデーションエラーの表示に使用-->

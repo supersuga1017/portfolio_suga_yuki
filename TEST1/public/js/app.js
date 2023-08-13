@@ -33,3 +33,16 @@ $(function(){
 		}
 	});
 });
+
+
+$(function () {
+    $('.tooltip').hide();
+    $('.main__button').hover(
+    function () {
+        $(this).children('.tooltip').fadeIn('fast');
+		console.log("OK");
+    },
+    function () {
+        $(this).children('.tooltip').fadeOut('fast');
+    });
+});
