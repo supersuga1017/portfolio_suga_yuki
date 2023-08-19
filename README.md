@@ -34,9 +34,12 @@ https://myservice-web.com/
     - Laravel(10.9.0)<br>
     - MySQL(8.0.23)<br>
 <br>・**インフラ**<br>
-    - AWS(Routes53/EC2/VPC/ALB/ACM/IAM)<br>
+    - AWS(Routes53/RDS/EC2/VPC/ALB/ACM/IAM)<br>
+    - Nginx
 <br>・ **バージョン管理**<br>
     - Git/GitHub<br>
+<br>・ **テスト**<br>
+    - PHPUnit<br>
 <br>・**開発環境**<br>
     - VScode<br>
 
