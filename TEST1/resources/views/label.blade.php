@@ -62,9 +62,9 @@
                         {{-- 例)value="MUBR11" selected(SESSIONと一致していれば)> --}}
                         {{-- <option value={{ $gyo->id }} {{ session('gyoumu') == $gyo->id ? 'selected' : '' }}>{{ $gyo->name }} </option>     --}}
                         {{-- <td>{{  \Carbon\Carbon::parse($non->date)->format('Y/m/d')}}</td> --}}
-                        <td>{{ $non->name }}</td>
-                        <td>{{ $non->name }}</td>
-                        <td>{{ $non->name }}</td>
+                        <td>2023/08/09</td>
+                        <td>202308090001</td>
+                        <td>未</td>
                         
                         
                       </tr>
