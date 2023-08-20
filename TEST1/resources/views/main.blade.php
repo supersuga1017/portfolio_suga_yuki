@@ -69,8 +69,13 @@
            <div class="main__manual-image">
                 <img src="{{ asset('images/all-frow.jpg') }}" alt="マニュアル画像">
            </div>
-           <div class="main__manual-button">
-                <a href="https://github.com/supersuga1017/portfolio_suga_yuki/tree/master">業務マニュアルはこちら!</a>
+            {{-- リンクボタン --}}
+            <div class="main__manual-button">
+                <a href="https://daisy-visitor-047.notion.site/Laravel-AWS-8bc6f42cf87e428baedd7586a8b250c4?pvs=4">業務マニュアルはこちら</a>
+            </div>
+
+            <div class="main__manual-button">
+                <a href="https://github.com/supersuga1017/portfolio_suga_yuki/tree/master">コード＆使用技術（GitHub）はこちら</a>
             </div>
         </div>
 
