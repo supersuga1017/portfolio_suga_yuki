@@ -84,7 +84,7 @@
                             </div>
 
                             <div class="label__row">
-                                <label for="">管理番号のバーコードを読み取ってください ：</label><br>
+                                <label for="">管理番号（ラベル番号）のバーコードを読み取ってください ：</label><br>
                                 <input type="number" name="manage_number" class="label__form" value={{ old('manage_number') }} form="form_finish">
                             </div>
 
